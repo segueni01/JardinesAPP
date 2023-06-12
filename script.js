@@ -7,12 +7,22 @@ function calcular(){
         return;
     }
 
-    mes = document.getElementById("mes").value || "Mes"
-    ano = document.getElementById("ano").value || "Ano"
-    mesAno = document.getElementById("mesAno")
-    mesAno.innerText = mes + "("+ano+")"
+    mesActual = document.getElementById("mesActual").value || "Mes"
+    anoActual = document.getElementById("anoActual").value || "Ano"
 
-    fecha = mes + "("+ano+")"
+    mesAno = document.getElementById("mesAno")
+    mesAno.innerText = mesActual + "("+anoActual+")"
+
+    fecha = mesActual + "("+anoActual+")"
+
+    mesAnterior = document.getElementById("mesAnterior").value || ""
+    anoAnterior = document.getElementById("anoAnterior").value || ""
+
+    mesAnteriorParrafo = document.getElementById("mesAnterior-p")
+    mesActualParrafo = document.getElementById("mesActual-p")
+
+    mesAnteriorParrafo.innerText = "Mes anterior - " + mesAnterior + " ("+anoAnterior+")"
+    mesActualParrafo.innerText = "Mes actual - " + mesActual + " ("+anoActual+")"
 
     mesAnterior1 = document.getElementById("mesAnterior1").value*1;
     mesAnterior2 = document.getElementById("mesAnterior2").value*1;
@@ -81,11 +91,12 @@ function calcular(){
     total4 = document.getElementById("total4");
 
     reciboTotal = document.getElementById("recibo") || 0;
+    reciboTotalSinPuntos = parseMoneyValue(reciboTotal.value)
 
-    total1.value = ((porcentaje1.value/100) * (reciboTotal.value*1))
-    total2.value = ((porcentaje2.value/100) * (reciboTotal.value*1))
-    total3.value = ((porcentaje3.value/100) * (reciboTotal.value*1))
-    total4.value = ((porcentaje4.value/100) * (reciboTotal.value*1))
+    total1.value = ((porcentaje1.value/100) * (reciboTotalSinPuntos*1))
+    total2.value = ((porcentaje2.value/100) * (reciboTotalSinPuntos*1))
+    total3.value = ((porcentaje3.value/100) * (reciboTotalSinPuntos*1))
+    total4.value = ((porcentaje4.value/100) * (reciboTotalSinPuntos*1))
 
     total1.innerText = "$"+total1.value.toLocaleString() 
     total2.innerText = "$"+total2.value.toLocaleString() 
@@ -142,3 +153,22 @@ function mostrarErrorModal() {
         // Código a ejecutar después de que se cierra el modal
     });
 }
+
+function formatMoneyInput(input) {
+    // Elimina cualquier carácter que no sea un número
+    var value = input.value.replace(/[^0-9]/g, '');
+
+    // Formatea el valor con separadores de miles y agrega el símbolo de dinero
+    var formattedValue = "$" + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    // Asigna el valor formateado al input
+    input.value = formattedValue;
+  }
+
+  function parseMoneyValue(value) {
+    // Elimina el símbolo de dinero y los separadores de miles
+    var parsedValue = value.replace(/[$.]/g, '').replace(/[.,]/g, '');
+  
+    // Retorna el valor parseado como un número entero
+    return parseInt(parsedValue, 10);
+  }
