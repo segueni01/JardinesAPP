@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Depuración en la consola de Chrome</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>    <style>
+        .modal-content {
+            text-align: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: red;
+            cursor: pointer;
+        }
+        .container-custom {
+            width: 100%;
+            padding-right: 10px;
+            padding-left: 10px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .ocultar{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-custom">
+        <h1>Calculo luz de los jardines</h1>
+        <div id="Captura" style="padding: 20px;">
+            <div class="form-group">
+                <label for="recibo">Total recibo:</label>
+                <input type="number" class="form-control" id="recibo">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="mes">Mes:</label>
+                    <input type="text" class="form-control" id="mes">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="ano">Año:</label>
+                    <input type="number" class="form-control" id="ano">
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th id="mesAno">Mes (Año)</th>
+                        <th>Nombre</th>
+                        <th>Mes anterior</th>
+                        <th>Mes actual</th>
+                        <th class="ocultar">Consumo de cada uno mes actual</th>
+                        <th>Porcentaje Consumo</th>
+                        <th>Total a pagar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td><input type="text" class="form-control" id="nombre1"></td>
+                        <td><input type="number" class="form-control" id="mesAnterior1"></td>
+                        <td><input type="number" class="form-control" id="mesActual1"></td>
+                        <td id="consumo1" class="ocultar"></td>
+                        <td id="porcentaje1"></td>
+                        <td id="total1"></td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td><input type="text" class="form-control" id="nombre2"></td>
+                        <td><input type="number" class="form-control" id="mesAnterior2"></td>
+                        <td><input type="number" class="form-control" id="mesActual2"></td>
+                        <td id="consumo2" class="ocultar"></td>
+                        <td id="porcentaje2"></td>
+                        <td id="total2"></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td><input type="text" class="form-control" id="nombre3"></td>
+                        <td><input type="number" class="form-control" id="mesAnterior3"></td>
+                        <td><input type="number" class="form-control" id="mesActual3"></td>
+                        <td id="consumo3" class="ocultar"></td>
+                        <td id="porcentaje3"></td>
+                        <td id="total3"></td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td><input type="text" class="form-control" id="nombre4"></td>
+                        <td><input type="number" class="form-control" id="mesAnterior4"></td>
+                        <td><input type="number" class="form-control" id="mesActual4"></td>
+                        <td id="consumo4" class="ocultar"></td>
+                        <td id="porcentaje4"></td>
+                        <td id="total4"></td>
+                    </tr>
+                    <tr>
+                        <th>TOTAL</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <b><th id="consumoTotal" class="ocultar"></th></b>
+                        <b><th id="porcentajeTotal"></th></b>
+                        <b><th id="totalPagar"></th></b>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button onclick="calcular()" class="btn btn-primary">Calcular</button>
+        <button onclick="captureAndDownload()" class="btn btn-success">Captura</button>
+        <div style="padding-bottom: 15px;"></div>
+    </div>
+
+    <!-- Modal para mostrar el mensaje de error -->
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <span class="modal-close" data-dismiss="modal" aria-label="Close">&times;</span>
+                <div class="modal-body">
+                    <h3>Error: Campos invalidos</h3>
+                    <p>Rosa Maria Niño Florez Por favor, verifique los campos que estan en color rojo y asegurese de completarlos correctamente.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
