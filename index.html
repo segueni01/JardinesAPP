@@ -32,22 +32,32 @@
 </head>
 <body>
     <div class="container-custom">
-        <h1>Calculo luz de los jardines</h1>
+        <h1 style="">Calculo luz de los jardines</h1>
         <div id="Captura" style="padding: 20px;">
             <div class="form-group">
-                <label for="recibo">Total recibo:</label>
-                <input type="number" class="form-control" id="recibo">
+                <label for="recibo">Total recibo actual (no coloque puntos):</label>
+                <input type="text" class="form-control" id="recibo" oninput="formatMoneyInput(this)">
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="mes">Mes:</label>
-                    <input type="text" class="form-control" id="mes">
+                <div class="form-group col-md-3">
+                    <label for="mesAnterior">Mes anterior:</label>
+                    <input type="text" class="form-control" id="mesAnterior">
+                </div>
+    
+                <div class="form-group col-md-3">
+                    <label for="anoAnterior">Año anterior:</label>
+                    <input type="number" class="form-control" id="anoAnterior">
                 </div>
 
-                <div class="form-group col-md-4">
-                    <label for="ano">Año:</label>
-                    <input type="number" class="form-control" id="ano">
+                <div class="form-group col-md-3">
+                    <label for="mesActual">Mes actual:</label>
+                    <input type="text" class="form-control" id="mesActual">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="anoActual">Año actual:</label>
+                    <input type="number" class="form-control" id="anoActual">
                 </div>
             </div>
 
@@ -56,8 +66,8 @@
                     <tr>
                         <th id="mesAno">Mes (Año)</th>
                         <th>Nombre</th>
-                        <th>Mes anterior</th>
-                        <th>Mes actual</th>
+                        <th id="mesAnterior-p">Mes anterior</th>
+                        <th id="mesActual-p">Mes actual</th>
                         <th class="ocultar">Consumo de cada uno mes actual</th>
                         <th>Porcentaje Consumo</th>
                         <th>Total a pagar</th>
